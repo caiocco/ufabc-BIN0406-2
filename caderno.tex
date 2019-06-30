@@ -1,0 +1,392 @@
+\documentclass[a4paper]{article}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{lineno}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[autostyle]{csquotes}
+\usepackage[colorinlistoftodos,portuguese,linecolor=black]{todonotes}
+\usepackage{marginnote}
+\usepackage{hyperref}
+\usepackage[default,scale=0.95]{opensans}
+\usepackage{fancyhdr}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{nameref}
+\usepackage{indentfirst}
+\usepackage{array}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage[alf]{abntex2cite}
+
+\setlength{\parskip}{\baselineskip}
+%\setlength{\parindent}{0pt}%
+
+\usetikzlibrary{arrows,chains,fit,quotes,positioning,shapes}
+\pgfplotsset{compat=1.13}
+
+\newcommand{\aula}[2][]{\todo[inline,color=blue!10, #1]{\textbf{#2}}}
+\newcommand{\nota}[2][]{\todo[color=yellow!30,linecolor=black, #1]{#2}}
+\newcommand{\revisar}[2][]{\todo[color=red!30,linecolor=black, #1]{#2}}
+\newcommand{\notagrande}[2][]{\todo[inline,color=orange!30, #1]{#2}}
+\newcommand*\bolinha[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\notaesq}[2][]{{%
+		\let\marginpar\marginnote
+		\reversemarginpar
+		\renewcommand{\baselinestretch}{0.8}%
+		\nota[#1]{#2}}}
+\renewcommand\CancelColor{\color{red}}
+\newcommand\defeq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
+\newcommand\noteq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily not}}}{=}}}
+
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\definecolor{qqzzcc}{rgb}{0.,0.6,0.8}
+\definecolor{eqeqeq}{rgb}{0.8784313725490196,0.8784313725490196,0.8784313725490196}
+
+\fancypagestyle{plain}{
+	\fancyhf{} %Clear Everything.
+	\fancyfoot[C]{\thepage} %Page Number
+	\renewcommand{\headrule}{\hrule height 2pt \vspace{1mm}\hrule height 1pt}
+	\renewcommand{\footrulewidth}{1pt}
+	\fancyfoot[L]{BOTTOM LEFT}
+	\fancyfoot[R]{BOTTOM RIGHT}
+	\fancyhead[LE]{TOP LEFT, EVEN PAGES}
+	\fancyhead[RO]{TOP RIGHT, ODD PAGES}
+}
+\fancyfoot[C]{\sffamily\textbf{\thepage}}
+
+\renewcommand\seriesdefault{l}
+\renewcommand\mddefault{l}
+\renewcommand\bfdefault{sb}
+
+\hypersetup{
+	colorlinks  = true,
+	allcolors   = black,
+	pdftitle    = {Caderno de IPE},
+	pdfsubject  = {Estatística},
+	pdfauthor   = {Caio César Carvalho Ortega},
+	pdfcreator  = {Caio César Carvalho Ortega},
+	pdfproducer = {Caio César Carvalho Ortega},
+	pdfkeywords = {estatística, probabilidade}
+}
+
+\definecolor{Red}{rgb}{0.9,0.0,0.1}
+%\definecolor{Blue}{rgb}{0.1,0.1,0.9}
+%\hyphenation{}
+\pagestyle{fancy}
+
+% ----------------------------------------------------------
+
+\begin{document}
+	
+	\section{Prólogo}
+	
+	As anotações e considerações que se seguem foram realizadas de maneira autônoma e não são fruto de orientação por parte da universidade e/ou de qualquer membro do corpo docente. Foram realizadas para fins de estudo, sendo, portanto, reflexo de um esforço de cunho pessoal para melhor apreensão do conteúdo discutido em sala.
+	
+%	\nocite{ross2010}
+%	\nocite{morin2016}
+%	\nocite{lipson2011}
+
+	\aula{Início da aula de 25/06/2019}
+	
+	\section{Introdução à Estatística Descritiva}
+	
+	Conteúdo proposto:
+	
+	\begin{itemize}
+		\item Conceitos básicos
+		\begin{itemize}
+			\item Elemento
+			\item Dado e variável
+			\item Valor e conjunto de valores
+			\item Tipo de dado e tipo de variável
+		\end{itemize}
+		\item Tabelas
+		\begin{itemize}
+			\item Frequência
+		\end{itemize}
+		\item Gráficos
+		\begin{itemize}
+			\item Variável qualitativa
+			\item Variável quantitativa
+		\end{itemize}
+	\end{itemize}
+	
+	A coisa mais importante na Estatística são os dados, designados como elementos, que podem ser muita coisa, uma entidade, um sujeito, uma pessoa, uma observação, um experimento. Por exemplo: o professor nasceu em Avaré, eis um dado; dizer que o céu desta noite está estrelado é uma observação, ou seja, um dado que veio de uma observação; já a ideia do experimento é ser um dado fruto de um processo controlado, como uma receita de bolo. Tudo isso são dados.
+	
+	O dado é um fato, uma característica, de um elemento. Nacionalidade, gentílico, cidade-natal, avaliação do bolo produzido com a receita (se ficou gostoso ou não).
+	
+	Valor é um agrupamento de dados, ou ainda, valores que os dados poderão ter. Podemos falar também em conjunto de valores.
+	
+	Quanto ao tipo de dado ou variável, estes podem ser qualitativos (também chamados de categorizados) e quantitativos. Qualitativa: todos aqueles dados e variáveis que não são números (exemplo: local de nascimento), subdivididos em nominal (exemplo: bolo gostoso ou bolo ruim) e ordinal (exemplo: altura de uma pessoa); uma variável qualitativa pode ser uma variável discreta (que só pode assumir valores inteiros) ou contínua (que pode assumir qualquer valor, podendo ser decimal).
+	
+	Tomando por base o exercício 2 do arquivo ``apostila completa.pdf'', Munhoz começa a responder cada uma das questões.
+	
+	\begin{enumerate}[label=\alph*.]
+		\item b
+		\item 4
+		\item 24
+		\item Qualitativa: gênero\\ Quantitativa: idade, questão do aborto, classificação
+		\item ?
+	\end{enumerate}
+	
+	Feito o exercício, devemos compreender os conceitos de (i) frequência absoluta, que pode ser definido como: quantidade de ocorrência de um valor ou conjunto de valores; (ii) tabela de frequência absoluta, que pode ser definida como a tabela em que as linhas expressam as frequências de cada valor ou conjunto de valores.
+	
+	Munhoz agora parte para o exercício 8D no mesmo arquivo PDF. Professor inicia a construção de uma tabela de frequências absolutas. Em seguida, complementa com a coluna de frequências relativas. Vide \autoref{tab:tab1}.
+	
+	\begin{table}[]
+		\centering
+		\caption{Opinião dos funcionários sobre troca de gerente (G = gosta; N = não gosta)}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Opinião} & \textbf{Frequência absoluta} & \textbf{Frequência relativa} \\ \hline
+			G & 9 & 45\% \\ \hline
+			N & 11 & 55\% \\ \hline
+		\end{tabular}
+		\\ \vspace{1mm} Fonte: questão 8
+		\label{tab:tab1}
+	\end{table}
+	
+	Tabelas possuem título, corpo e fonte.
+	
+	Frequência relativa é o percentual do aparecimento de cada valor.
+	
+	Professor agora parte para o gráfico, dizendo que este torna a visualização mais fácil. Aponta que o gráfico pode ser de coluna ou de setores (também chamado de ``gráfico de pizza'').
+	
+	Desenha um gráfico de colunas e um gráfico de setores.
+	
+	Munhoz sugere a utilização do histograma para gráficos de variáveis quantitativas. O histograma também é conhecido como damo-e-folhas (vide \autoref{fig:damofolhas1}). Define-o como gráfico de colunas em faixas justapostas.
+	
+	\begin{figure}[]
+		\centering
+		\caption{Damo-e-folhas para a pontuação}
+		\begin{tabular}{l|lllll}
+			2 & 8 & 6 &  &  &  \\
+			3 & 5 &  &  &  &  \\
+			2 & 6 & 9 & 5 & 4 &  \\
+			6 & 4 & 8 & 0 &  &  \\
+			9 & 2 & 5 & 2 & 0 & 9
+		\end{tabular}
+		\\ \vspace{1mm} Fonte: questão 10E
+		\label{fig:damofolhas1}
+	\end{figure}
+	
+	Para permitir a construção do histograma, agrupa as pontuações em classes (vide \autoref{labeltab:pontuacaoalunos}).
+	
+	\begin{table}[]
+		\centering
+		\caption{Pontuação dos alunos}
+		\begin{tabular}{l|l|l|l}
+			\textbf{Pontuação} & \textbf{Freq. absoluta} & \textbf{Freq. acum.} & \textbf{Freq. acum. (percent.)} \\ \hline
+			50-59 & 3 & 3 & 15\% \\
+			60-59 & 2 & 5 & 25\% \\
+			70-79 & 5 & 10 & 50\% \\
+			80-89 & 4 & 14 & 70\% \\
+			90-99 & 6 & 20 & 100\%
+		\end{tabular}
+		\\ \vspace{1mm} Fonte: questão 10E
+		\label{tab:pontuacaoalunos}
+	\end{table}
+	
+	\subsection{Teste no Tidia}
+	
+	Questões 2c, 4e, 7 frequência absoluta de A e 11 frequência acumulada percentual da sexta classe da segunda lista, cada uma correspondendo às questões 1 a 4 do teste na plataforma, respectivamente.
+	
+	\aula{Início da aula de 28/06/2019}
+	
+	\section{Medidas de posição e variabilidade}
+	
+	\subsection{Medida de posição média para dados brutos}
+	
+	$X_{1}, X_{2}, X_{3}$
+	
+	Média = $M = \dfrac{X_{1} + X_{2} + \dots + X_{n}}{n}$
+	
+	\subsubsection{Exemplo}
+	
+	Vide gastos na \autoref{tab:gastomes}.
+	
+	\begin{table}[]
+		\centering
+		\caption{Gasto por mês}
+		\begin{tabular}{l|l}
+			\textbf{Mês} & \textbf{Gasto} \\ \hline
+			Janeiro & 200 \\
+			Fevereiro & 500 \\
+			Março & 600
+		\end{tabular}
+		\\ \vspace{1mm} Fonte: sem fonte
+		\label{tab:gastomes}
+	\end{table}
+	
+	O gasto médio então é expresso por:
+	
+	$M = \dfrac{200+500+600}{3} = \dfrac{1300}{3} \cong 433$
+	
+	\subsubsection{Notação}
+	
+	$M$ é a média populacional e $\bar{x}$ é a média de uma amostra; $f$ é a frequência absoluta.
+	
+	\subsection{Medida de posição média para dados agrupados}
+	
+	\notagrande{Passar a limpo da foto.}
+	
+	\subsection{Dados arupados por faixas de valores}
+	
+	Troca a faixa pelo ponto central (o ponto médio) e calcula a média. Veja o exemplo da \autoref{tab:agrup6e}
+	
+	\begin{table}[]
+		\centering
+		\caption{Pontuação dos alunos}
+		\begin{tabular}{l|l|l|l|l}
+			\textbf{Chave} & \textbf{X} & \textbf{fa} & \textbf{f} & \textbf{fX} \\ \hline
+			2-6 & 4 & 2 & 20\% & 0,8 \\
+			7-11 & 9 & 3 & 30\% & 2,7 \\
+			12-16 & 14 & 4 & 40\% & 5,6 \\
+			17-21 & 19 & 1 & 10\% & 1,9 \\ \hline
+			- & - & 10 & 11
+		\end{tabular}
+		\\ \vspace{1mm} Fonte: questão 6E
+		\label{tab:agrup6e}
+	\end{table}
+	
+	Logo a média é $11$ ($M=11$).
+	
+	\section{Média da variabilidade}
+	
+	\subsection{Desvio quadrático}
+	
+	Desvio quadrático é a diferença do quadrado do valor:
+	
+	\begin{equation*}
+		\left( X_{i} -M \right)^{2}
+	\end{equation*}
+	
+	Considerando novamente os gastos na \autoref{tab:gastomes} e que $M = 430$, temos:
+	
+	Desvio quadrático do $500$.
+	
+	\notagrande{Não deu tempo de copiar}
+	
+	Calculemos para os gastos dos exemplos anteriores (\autoref{tab:gastomesxi}).
+	
+	\begin{table}[]
+		\centering
+		\caption{Gasto por mês}
+		\begin{tabular}{l|l}
+			\textbf{Valor} & \textbf{$(X_{i}-M)^{2}$} \\ \hline
+			200 & 52900 \\
+			500 & 4900 \\
+			600 & 28900 \\ \hline
+			- & 86700
+		\end{tabular}
+		\\ \vspace{1mm} Fonte: sem fonte
+		\label{tab:gastomesxi}
+	\end{table}
+	
+	\subsection{Variância}
+	
+	Variância é a média dos desvios quadráticos, expressa com o símbolo $\sigma^{2}$ (sigma ao quadrado). Para a variância dos dados $X{1}, X_{2}, \dots, X_{n}$ com média $M$:
+	
+	\begin{equation*}
+		\sigma{2} = \dfrac{(X_{1} + M)^{2} + (X_{2}  + M)^{2} + \dots + (X_{n} - M)^{2} }{n}
+	\end{equation*}
+	
+	Adotemos novamente os gastos dos exemplos anteriores para cálculo da variância:
+	
+	$\sigma^{2} = \dfrac{52900 + 4900 + 28900}{3} = \dfrac{86700}{3} = 28900$
+	
+	\subsection{Coeficiente de variação}
+	
+	É o $CV$. A notação é $CV = \dfrac{\sigma}{M}$. Exemplo:
+	
+	$CV = \dfrac{170}{430} = 39\%$
+	
+	\section{Variância para dados brutos}
+	
+	Sendo $f =$ frequência relativa, temos a \autoref{tab:vdb}.
+	
+	\begin{table}[]
+		\centering
+		\begin{tabular}{l|l|l|l|l}
+			\textbf{$X$} & \textbf{$f$} & \textbf{$fX$} & \textbf{$(X_{i} - M)^{2}$} & \textbf{$f(X_{i}-M)^{2}$} \\ \hline
+			$X_{1}$ & $f_{1}$ & $f_{1}X_{1}$ & $(X_{1} - M)^{2}$ & $f_{1}(X_{1}-M)^{2}$ \\
+			$X_{1}$ & $f_{1}$ & $f_{1}X_{1}$ & $(X_{1} - M)^{2}$ & $f_{1}(X_{1}-M)^{2}$ \\
+			$X_{1}$ & $f_{1}$ & $f_{1}X_{1}$ & $(X_{1} - M)^{2}$ & $f_{1}(X_{1}-M)^{2}$ \\ \hline
+			- & - & $M$ & - & $\sigma{2}$
+		\end{tabular}
+		\\ \vspace{1mm} Fonte: N/A
+		\label{tab:vdb}
+	\end{table}
+	
+	\subsection{Variância populacional e desvio populacional}
+
+	\notagrande{Passar a limpo da foto.}
+	
+	\section{Percentis}
+	
+	É uma medida de posição. Sendo o percentil um ponto entre $p\%$ e $(-1p)\%$, temos:
+	
+	\begin{equation*}
+		p = \underbracket{p \times n}_{\text{arredondado pra cima}}
+	\end{equation*}
+	
+	$n$ é a quantidade de dados.
+	
+	Exemplo a partir da questão 3A, alínea (d):
+	
+	$p_{75}$ está na posição $75\% \times 8 = 6$
+	
+	O ranking é expresso pelos dados ordenados como \bolinha{30} \bolinha{36} \bolinha{42} \bolinha{42} \bolinha{44}
+	\bolinha{46} \bolinha{50} \bolinha{54}
+	
+	Então $p_{75} = \dfrac{46+50}{2} = 48$
+	
+	$p_{75} = 48 = Q_{3}$ (3o. quartil)
+	
+	$p_{25} = Q_{1}$ (1o. quartil)
+	
+	$p_{25} = \dfrac{36 + 42}{2} = 39$
+	
+	$p_{50} = Q_{2} =$ mediana  $=\dfrac{42 + 44}{2} = 43$
+	
+	\notagrande{Box-plot na foto. Passar a limpo}
+	
+	Exemplo respondendo a questão 9C:
+	
+	$CV_{UTC} = \dfrac{0,84}{2,8} = 30\%$
+	
+	$CV_{UTK} = \dfrac{0,84}{2,4} = 37\%$
+	
+	Logo, a UTK tem notas mais dispersas.
+	
+	\notagrande{A P1 ficou para dia 19/7!}
+	
+	Responder no Tidia:
+	
+	\begin{enumerate}
+		\item 3 (a + c + d)
+		\item 7 (a + b)
+		\item 10 (cidade e dispersão)
+		\item 17 resposta: 131
+	\end{enumerate}
+		
+	 ----------------------------------------------------------
+	
+	
+	%
+	
+	\listoftodos[Lista de anotações]
+	\addcontentsline{toc}{section}{Lista de anotações}
+		
+	\bibliography{fontes.bib}
+	\addcontentsline{toc}{section}{Referências}
+
+\end{document}
+
+
