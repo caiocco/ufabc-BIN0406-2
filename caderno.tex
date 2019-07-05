@@ -328,7 +328,7 @@
 
 	\notagrande{Passar a limpo da foto.}
 	
-	\section{Percentis}
+	\subsection{Percentis}
 	
 	É uma medida de posição. Sendo o percentil um ponto entre $p\%$ e $(-1p)\%$, temos:
 	
@@ -375,7 +375,234 @@
 		\item 10 (cidade e dispersão)
 		\item 17 resposta: 131
 	\end{enumerate}
-		
+
+	\section{Probabilidade: contextos básicos}
+
+	\begin{itemize}
+		\item Ementa:
+		\begin{itemize}
+			\item Probabilidade
+			\item Probabilidade da ação
+			\item Probabilidade condicional
+		\end{itemize}
+	\end{itemize}
+
+	\subsection{Definições}
+	
+	\textbf{Evento}: conjunto de resultados.
+	
+	\textbf{Espaço amostral}: conjunto de todos os resultados possíveis
+	
+	\textbf{Ponto amostral}: é um elemento do espaço amostral
+	
+	\subsection{Exemplo}
+	
+	\noindent Dado o lançamento de uma moeda, são:
+	
+	$A =$ espaço amostral
+	
+	$A = \{cara,coroa\}$
+	
+	Pontos amostrais: cara, coroa
+	
+	\subsection{Exemplo}
+	
+	\noindent Dado o lançamento de duas moedas, são:
+	
+	$A =$ espaço amostral
+	
+	$A = \{(cara,coroa),(coroa,cara),(cara,cara),(coroa,coroa)\}$
+	
+	Pontos amostrais: (cara,coroa), (coroa,cara), (cara,cara), (coroa,coroa)
+	
+	$E =$ é o evento, no caso, \textbf{sair uma cara somente}
+	
+	$E = \{(cara,coroa),(coroa,cara)\} \subset A$
+	
+	\subsection{Definição de probabilidade}
+	
+	$P(E) =$ probabilidade do evento $E$
+	
+	$E \subset A, A = $espaço amostral
+	
+	$P(E) = \dfrac{n(E)}{n(A)} = \dfrac{\text{quantidade de elementos de $E$}}{\text{quantidade de elementos de $A$}}$
+	
+	\subsection{Exemplo}
+	
+	Considere o seguinte experimento: lançamento de uma moeda. Temos:
+	
+	$A = \{cara,coroa\}$
+	
+	$E =$ sair cara
+	
+	$E = \{(cara)\}$
+	
+	$P(E) = P(cara) = \dfrac{n(E)}{n(A)} = \dfrac{1}{2} = 50\%$
+	
+	\subsection{Exemplo}
+	
+	Considere o seguinte experimento: lançamento de duas moedas. Temos:
+	
+	$E =$ sair só uma cara
+	
+	$P(E) = \dfrac{2}{4} = \dfrac{1}{2} = 50\%$
+	
+	\subsection{Definição frequentista de probabilidade}
+	
+	Nela, a probabilidade ($P$) é igual a frequência relativa. Por exemplo: lançar uma moeda e esperar $500$ caras.
+	
+	\subsection{Exemplo}
+	
+	\noindent Referência: 3A, apostila 4
+	
+	\begin{enumerate}[label=\alph*.]
+		\item $\{0,1,2,3,4\}$ \\ $5$
+		\item $0$, cujo $P = 60 \div 200 = 30\%$ \\
+			$1$, cujo $P = 80 \div 200 = 40\%$ \\ 
+			$2$, cujo $P = 40 \div 200 = 20\%$ \\
+			$3$, cujo $P = 16 \div 200 = 8\%$ \\
+			$4$, cujo $P = 4 \div 200 = 2\%$
+		\item $P(V=0) = 30\%$
+		\item $P(V \geq 2) = 20\% + 8\% + 2\% = 30\%$
+		\item $P(V=1$ ou $V=2) = 40\% + 20\% = 60\%$ ou, alternativamente \\
+			$P(V=1$ ou $V=2) = \dfrac{120}{200} = 60\%$
+		\item $P(V=2$ ou $V=1$ ou $V=0) = \dfrac{180}{200} = 90\%$ ou, alternativamente \\
+			$P(V2$ ou $V=1$ ou $V=0) = 20\% + 40\% + 30\% - 90\%$
+	\end{enumerate}
+	
+	\subsection{Probabilidade da união}
+	
+	\subsubsection{Proposição}
+	
+	Proposição: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+	
+	Prova: $n =$ quantidade ttoal de possibilidades $=$ tamanho do espaço amostral.
+	
+	Temos:
+	
+	$n_A\cup B = n_A + n_B - n_{A \cap B}$
+	
+	$\dfrac{n_{A\cup B}}{n} = \dfrac{n_{A}}{n} + \dfrac{n_B}{n} - \dfrac{n_{A \cap B}}{n}$
+
+	Logo:
+	
+	$P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+	
+	\subsubsection{Exemplo}
+	
+	Professor utiliza o exemplo $n_{B \cup C} = n_{B} + n_{C} - n_{B \cap C}$, vide \autoref{fig:exemplo2conj}.
+	
+	\begin{figure}[h]
+	\centering
+		\begin{tikzpicture}[
+		thick]
+		\draw [fill=cyan, fill opacity=0.5] (0,0) circle (2cm);
+		\draw [fill=orange, fill opacity=0.5] (3,-1) circle (2.5cm);
+		\draw (0,0) ++(120:2cm) -- ++(120:2.2cm) node [fill=white,inner sep=5pt](a){$B$};
+		\draw (3, -1) ++(30:2.5cm) -- ++(30:2.6cm) node [fill=white,inner sep=5pt](b){$C$};
+		\end{tikzpicture}
+		\caption{Observar interseção}
+		\label{fig:exemplo2conj}
+	\end{figure}
+	
+	\subsubsection{Definição}
+	
+	$A$ e $B$ são eventos excludentes \hspace{5mm} $\leftrightarrow A \cap B = \emptyset$
+	
+	\subsubsection{Proposição}
+	
+	$A$ e $B$ são eventos excludentes \hspace{5mm} $\leftrightarrow P(A \cup B) = P(A) + P(B)$
+	
+	\subsubsection{Exemplo}
+	
+	Referência: exercício 1A da apostila 4
+	
+	$P(A) = 23\%$
+	
+	$P(A) = 19\%$
+	
+	$P(A$ ou $B) = P(A \cup B) = 38\%$
+	
+	\begin{enumerate}[label=\alph*.]
+		\item $P(A \cap B) = ?$ \\
+			\\
+			Temos: \\
+			\\
+			$P(A \cup B) = P(A) + P(B) - P(A \cap B)$ \\
+			$P(A \cap) B) = P(A) + P(B) - P(A \cup B)$ \\
+			$P(A \cap) B) = 23\% + 19\% - 36\% = 42\% - 38\%$ \\
+			$P(A \cap) B) =	4\%$
+		\item Não são eventos excludentes, pois $A \cap B \neq \emptyset$ devido a $P(A \cap B) > 0$
+	\end{enumerate}
+
+	\subsection{Probabilidade condicional}
+	
+	\subsubsection{Definição}
+	
+	$P(A | B) = \dfrac{N_{A \cap B}}{N_B}$
+	
+	\subsubsection{Exemplo}
+	
+	Considere a retirada de bolas pretas e brancas numa caixa:
+	
+	\bolinha{P} \bolinha{P} \bolinha{P} \bolinha{B} \bolinha{B}
+	
+	$P(\text{sair bola preta na 2a. vez }|\text{ sair bola branca na 1a. vez}) = \dfrac{3}{4} = 75\%$
+
+	$P(\text{sair bola preta na 2a. vez }|\text{ sair bola branca na 1a. vez}) = \dfrac{2}{4} = 50\%$	
+	
+	Experimento 1: tira uma bola
+	
+	Experimento 2: tira uma bola
+	
+	\bolinha{P} \bolinha{P} \bolinha{P} \bolinha{B} \bolinha{B} $\rightarrow$ 1a. vez $\rightarrow$ \bolinha{P} \bolinha{P} \bolinha{B} \bolinha{B} $\rightarrow$ 2a. vez
+
+	\subsubsection{Exemplo}
+	
+	$A = \{1,2,3,4,5\}$
+	
+	$B = \{1,2\}$
+	
+	$C = \{7,8,9\}$
+	
+	\subsubsection{Proposição}
+	
+	$P(A|B) = \dfrac{P(A \cap B)}{P(B)}$
+	
+	\subsubsection{Prova}
+	
+	$P(A|B) = \dfrac{n_{A \cap B}}{n_B}$
+	
+	$P(A|B) = \dfrac{\frac{n_{A \cap B}}{n}}{\frac{n_B}{n}} = \dfrac{P(A \cap B)}{P(B)}$
+	
+	\subsubsection{Consequência}
+	
+	$P(A \cap B) = P(A|B) \cdot P(B)$
+	
+	\subsubsection{Definição}
+	
+	Eventos $A$ e $B$ são independentes \hspace{5mm} $\leftrightarrow P(A|B) = P(A)$
+	
+	\subsubsection{Proposição}
+	
+	$A$ e $B$ são eventos independentes \hspace{5mm} $\leftrightarrow P(A \cap B) = P(A) \cdot P(B)$
+	
+	\subsubsection{Prova}
+	
+	$P(A \cap B) = P(A|B)P(B) = P(A)P(B)$
+	
+	\subsubsection{Exemplo}
+	
+	Referência: exercício 8B da apostila 4
+	
+	\begin{enumerate}[label=\alph*.]
+		\item $P(\text{cliente mulher}) = \dfrac{30 + 50}{200} = \dfrac{80}{200} = 40\%$
+		\item $P(\text{cliente homem}) = \dfrac{100}{200} = 50\%$
+		\item $P(\text{solteira }|\text{ mulher}) = \dfrac{30}{80} = 37,5\%$
+		\item $\dfrac{12\cancel{0}}{20\cancel{0}} = 60\%$
+		\item $P(\text{casado }|\text{ homem}) = \dfrac{100}{120} = 83,3\%$
+	\end{enumerate}
+	
 	 ----------------------------------------------------------
 	
 	
