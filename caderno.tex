@@ -21,6 +21,7 @@
 \usepackage{array}
 \usepackage{cancel}
 \usepackage{enumitem}
+\usepackage[most]{tcolorbox}
 \usepackage[alf]{abntex2cite}
 
 \setlength{\parskip}{\baselineskip}
@@ -74,6 +75,12 @@
 	pdfproducer = {Caio César Carvalho Ortega},
 	pdfkeywords = {estatística, probabilidade}
 }
+
+\definecolor{CinzaCaixa}{gray}{0.85}
+\newtcolorbox{citacao}{colback=CinzaCaixa,grow to right by=-10mm,grow to left by=-10mm,
+	boxrule=0pt,boxsep=0pt,breakable}
+
+\SetBlockEnvironment{citacao}
 
 \definecolor{Red}{rgb}{0.9,0.0,0.1}
 %\definecolor{Blue}{rgb}{0.1,0.1,0.9}
@@ -376,6 +383,10 @@
 		\item 17 resposta: 131
 	\end{enumerate}
 
+	\aula{Início da aula de 05/07/2019}
+
+	% Apostila 4
+
 	\section{Probabilidade: contextos básicos}
 
 	\begin{itemize}
@@ -493,7 +504,8 @@
 	Professor utiliza o exemplo $n_{B \cup C} = n_{B} + n_{C} - n_{B \cap C}$, vide \autoref{fig:exemplo2conj}.
 	
 	\begin{figure}[h]
-	\centering
+		\centering
+		\caption{Observar interseção}
 		\begin{tikzpicture}[
 		thick]
 		\draw [fill=cyan, fill opacity=0.5] (0,0) circle (2cm);
@@ -501,7 +513,6 @@
 		\draw (0,0) ++(120:2cm) -- ++(120:2.2cm) node [fill=white,inner sep=5pt](a){$B$};
 		\draw (3, -1) ++(30:2.5cm) -- ++(30:2.6cm) node [fill=white,inner sep=5pt](b){$C$};
 		\end{tikzpicture}
-		\caption{Observar interseção}
 		\label{fig:exemplo2conj}
 	\end{figure}
 	
@@ -539,7 +550,13 @@
 	
 	\subsubsection{Definição}
 	
-	$P(A | B) = \dfrac{N_{A \cap B}}{N_B}$
+	\begin{equation*}
+		P(A | B) = \dfrac{N_{A \cap B}}{N_B}
+	\end{equation*}
+	
+	\begin{displaycquote}[p. 75]{pinheiro2009}
+		Se A e B são eventos que podem ocorrer em um dado experimento, a probabilidade condicional de $B$ ter ocorrido, quando se sabe que $A$ ocorreu, é representada por $P(B|A)$. (Leia-se probabilidade de $B$ dado $A$)
+	\end{displaycquote}
 	
 	\subsubsection{Exemplo}
 	
@@ -618,9 +635,84 @@
 			$x+y$ \\
 			$x = P(A \cap B) - P(A) \cdot P(B)$ \\
 			$y = P(A \cup B) - P(A) - P(B)$
-	\end{enumerate}	
+	\end{enumerate}
+	
+	\aula{Início da aula de 12/07/2019}
+	
+	% Apostila 5
+	
+	Faltei, mas sei que o Munhoz avançou mais uma apostila.
+	
+	Ementa:
+	
+	\begin{itemize}
+		\item Diagrama de árvore
+		\item Probabilidade do caminho
+		\item Probabilidade inversa
+		\item Teorema de Bayes
+	\end{itemize}
+	
+	\section{Teorema de Bayes}
+	
+	Uma das relações mais importantes envolvendo probabilidades condicionais \citeonline[p. 116]{bussab2002}. Fórmula da versão mais simples \cite[p. 116]{bussab2002}:
+	
+	\begin{equation*}
+		P(A|B) = \dfrac{P(A \cap B)}{P(B)} = \dfrac{P(A) \cdot P(B|A)}{P(B)}
+	\end{equation*}
+	
+	Segundo \citeonline[p. 119]{bussab2002}, ``o Teorema de Bayes fornece um mecanismo formal para atualizar probabilidades'', além disso, possui ainda especial importância:
+	
+	\begin{displaycquote}[p. 119]{bussab2002}
+		O Teorema de Bayes, que aparentemente poderia ser encarado como mais um resultado na teoria de probabilidades, tem importância fundamental, pois fornece a base para uma abordagem da inferência estatística conhecida como \textit{inferência bayesiana}.
+	\end{displaycquote}
 
-	 ----------------------------------------------------------
+	\subsection{Exemplo}\label{sec:exbayes}
+	
+	\begin{displaycquote}[p. 118]{bussab2002}
+		Para selecionar seus funcionários, uma empresa oferece aos candidatos um curso de treinamento durante uma semana. No final do curso, eles são submetidos a uma prova e 25\% são classificados como bons (B), 50\% como médios (M) e os restantes 25\% como fracos (F). Para facilitar a seleção, a empresa pretende substituir o treinamento por um teste contendo questões referentes a conhecimentos gerais e específicos. Para isso, gostaria de conhecer qual a probabilidade de um indivíduo aprovado no teste ser considerado fraco, caso fizesse o curso. Assim, neste ano, antes do início do curso, os candidatos foram submetidos ao teste e receberam o conceito aprovado (A) ou reprovado (R). No final do curso, obtiveram-se as seguintes probabilidades condicionais:
+		
+		\begin{equation*}
+		P(A|B) = 0,80 \hspace{5mm} P(A|M) = 0,50 \hspace{5mm} P(A|F) = 0,20
+		\end{equation*}
+		
+		Queremos encontrar $P(F | A)$ e, pelo Teorema de Bayes, essa probabilidade é dada por
+		
+		\begin{equation*}
+			P(F|A) = \dfrac{P(A|F)P(F)}{P(A|B)P(B) + P(A|M)P(M) + P(A|F)P(F)}
+		\end{equation*}
+		
+		\begin{equation*}
+			= \dfrac{(0,20)(0,25)}{(0,80)(0,25)+(0,50)(0,50)+(0,20)(0,25)} = 0,10
+		\end{equation*}
+		
+		Então, apenas 10\% dos aprovados é que seriam classificados como fracos durante o
+		curso. De modo análogo podemos encontrar $P(B | A) = 0,40$ e $P(M | A) = 0,50$, que poderiam fornecer subsídios para ajudar na decisão de substituir o treinamento pelo teste.
+	\end{displaycquote}
+
+	\subsection{Diagrama em árvore}
+	
+	Auxiliar para solucionar  problemas envolvendo o Teorema de Bayes, como aquele observado na \autoref{sec:exbayes}.
+	
+	\begin{figure}
+		\centering
+		\caption{Diagrama em árvore para o exemplo da \autoref{sec:exbayes}}
+		\includegraphics[width=0.7\linewidth]{img/diagrama_bayes}
+		\\ \vspace{1mm} Fonte: \citeonline[p. 119]{bussab2002}
+		\label{fig:diagramabayes}
+	\end{figure}
+	
+	\subsection{Teste no Tidia}
+	
+	Relação entre questão do Tidia e questão da apostila 5.
+	
+	\begin{enumerate}
+		\item 1A. Resposta: $35\%$
+		\item 2F. Resposta: $25,75\%$
+		\item 3. Resposta: $81,25\%$
+		\item 6A. Resposta: $56,25\%$
+	\end{enumerate}
+
+	% ----------------------------------------------------------
 	
 	
 	%
