@@ -714,6 +714,264 @@
 		\item 6A. Resposta: $56,25\%$
 	\end{enumerate}
 
+	\section{Contagem e Probabilidade}
+	
+	Ementa:
+	
+	\begin{itemize}
+		\item Objetivo
+		\item Problema modelo
+		\item Princípio fundamental da contagem
+	\end{itemize}
+
+	\subsection{Objetivo}
+	
+	Contar todas as possibilidades de uma situação sem listá-las.
+	
+	\subsection{Problema modelo}
+	
+	\noindent Uma cidade tem $n$ pontos turísticos e pretendo visitar $r$ destes, $r \leq n$.
+	
+	Quantidade de possibilidades de visitar todas numa certa ordem é $P_n =$ permutação de $n$ elementos.
+	
+	Quantidade de possibilidades de visitar $r$ pontos turísticos numa certa ordem é $A_{n,r} =$ arranjo de $n$ elementos tomados $r$ a $r$.
+	
+	Quantidade de possibilidades de visitar $r$ pontos sem levar em conta a ordem é $Cn,r =$ combinação de $n$ elementos tomados $r$ a $r$.
+	
+	\subsection{Problema}
+	
+	Pontos turísticos: $A, B, C$
+	
+	Visitar todos numa certa ordem tem as possibilidades: $ABC, ACB, BAC, BCA, CAB, CBA$, ou seja, a quantidade de permutações dos três elementos é seis, ao que temos: $P_3 = 6$.
+	
+	\subsection{Problema}
+	
+	Visitar $2$ pontos turísticos numa certa ordem tem as possibilidades: $AB, BA, AC, CA, BC, CB$, logo, $A_{3,2} = 6$.
+	
+	\subsection{Problema}
+	
+	Visitar $2$ pontos turísticos sem levar em conta a ordem, tem as possibilidades $\{A,B\}, \{A,C\}, \{B,C\}$. Perceba que as combinações são subconjuntos com $r$ elementos, logo $C_{3,2} = 3$.
+	
+	\subsection{Soluções}
+	
+	\subsubsection{Definição}
+	
+	Fatorial de $n$:
+	
+	\begin{equation*}
+		n! = n \cdot (n-1) \cdot (n-2) \cdot \dots \cdot 2 \cdot 1
+	\end{equation*}
+	
+	Exemplo: $5! = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120$
+	
+	$5! = 5 \cdot 4!$
+	
+	$5! = 5 \cdot 4 \cdot 3!$
+	
+	\subsubsection{Proposição}
+	
+	$P_n = n!$
+	
+	$A_{n,r} = \dfrac{n!}{(n-r)!}$
+	
+	$C_{n,r} = \dfrac{n!}{(n-r)! r!}$
+	
+	\subsubsection{Exemplo com arranjo}
+	
+	Vistos $4$ pontos turísticos de $11$, definindo o roteiro pode ser feito de:
+	
+	$A_{11,4} = \dfrac{11!}{(11-4)!}$
+	
+	$A_{11,4} = \dfrac{11!}{7!} = \dfrac{11 \cdot 10 \cdot 9 \cdot 8 \cdot \cancel{7!}}{\cancel{7!}} = 7920$ maneiras.
+	
+	\subsubsection{Exemplo com combinação}
+	
+	Visitar $4$ de $11$ pontos turísticos pode ser feito de:
+	
+	$C_{11,4} = \dfrac{11!}{(11-4)! 4!} = \dfrac{7920}{24} = 330$ maneiras.
+	
+	\subsubsection{Exemplo com permutação}
+	
+	Visitar todos os pontos turísticos definindo o roteiro pode ser feito de:
+	
+	$P_{11} = 11! = 11 \cdot 10 \cdot 9 \cdot \dots \cdot 1 = 39.916.800$ maneiras.
+	
+	\subsection{Princípio fundamental da contagem}
+	
+	Um conjunto $A$ tem $m$ elementos. Um conjunto $B$ tem $n$ elementos. A quantidade de elementos de $A \times B$ é $m \cdot n$.
+	
+	\notagrande{O $A$ no parágrafo anterior deve ser lido como ``A cartesiano B''}
+	
+	$m=5$ e $n=3$
+	
+	\begin{table}[]
+		\centering
+		\caption{Representação dos pares ordenados}
+		\label{tab:paresordenados}
+		\begin{tabular}{llllll}
+			$B_3$ & $\blacksquare$ & $\blacksquare$ & $\blacksquare$ & $\blacksquare$ & $\blacksquare$ \\
+			$B_2$ & $\blacksquare$ & $\blacksquare$ & $\blacksquare$ & $\blacksquare$ & $\blacksquare$ \\
+			$B_1$ & $\blacksquare$ & $\blacksquare$ & $\blacksquare$ & $\blacksquare$ & $\blacksquare$ \\
+			& $A_1$ & $A_2$ & $A_3$ & $A_4$ & $A_5$
+		\end{tabular}
+	\end{table}
+	
+	$5 \cdot 3 = 15$ pares ordenados, vide \autoref{tab:paresordenados}.
+	
+	Um conjunto $A$ tem $m$ elementos. Um conjunto $B$ tem $n$ elementos. Um conjunto $C$ tem $p$ elementos.
+	
+	A quantidade de elementos $A \times B \times C$ (elementos = trios).
+	
+	\begin{equation*}
+		m \cdot n \cdot p
+	\end{equation*}
+	
+	\subsubsection{Exemplo com combinação}
+	
+	Contratar 4 pessoas num grupo de 10 candidatos.
+	
+	$C_{10,4} = \dfrac{10!}{6! 4!}$
+	
+	$= \dfrac{10 \cdot 9\cdot 8\cdot 7\cdot \cancel{6!}}{\cancel{6!} 4!}$
+	
+	$= \dfrac{5040}{24} = 210$
+	
+	\subsubsection{Exemplo com permutação}
+	
+	Uma casa tem $7$ portas. De quantas formas você pode entrar e sair da casa?
+	
+	$7 \cdot 7 = 49$
+	
+	\subsubsection{Exemplo}
+	
+	Quantos números de $4$ algarismos posso fazer com os algarismos $1,2,3,4,5,6,7,8,9$?
+	
+	Caso 1: sem restrição:
+	
+	$9 \cdot 9 \cdot 9 \cdot 9 = 6561$
+	
+	Caso 2: todos distintos:
+	
+	\bolinha{9} \bolinha{8} \bolinha{7} \bolinha{6}
+	
+	$9\cdot 8\cdot 7\cdot 6 = 3024$
+	
+	Ou
+	
+	$A_{9,4} = \dfrac{9!}{5!} = 9 \cdot 8 \cdot 7 \cdot 6 = 3024$
+	
+	\subsection{Fixação}
+	
+	Por que $P_{n} = 11!$? 
+	
+	$n = 11$
+	
+	$r = 4$
+	
+	$P_n = 11!$, pois:
+	
+	$\bolinha{11} \underbracket{\bolinha{10}}_{\text{10, pois 1 já foi}} \bolinha{9} \bolinha{8} \bolinha{7} \bolinha{6} \bolinha{5} \underbracket{\bolinha{4}}_{\text{4, pois 7 já foram}} \bolinha{3} \bolinha{2} \bolinha{1}$
+	
+	Observe que as combinações possíveis diminuem a medida que se avança.
+	
+	\aula{Início da aula de 26/07/2019}
+	
+	\section{Distribuições de probabilidade discretas}
+	
+	Ementa:
+	
+	\begin{itemize}
+		\item Variável aleatória discreta
+		\item Lei dos grandes números
+		\item Esperança, variância e desvio padrão de uma variável discreta
+	\end{itemize}
+	
+	\subsection{Variável aleatória discreta}
+	
+	É descrita por uma tabela com seus valores e probabilidades, cujo exemplo pode ser conferido na \autoref{tab:dpfacedado}.
+	
+	Segundo \citeonline[p. 97]{pinheiro2009}, ``os valores (usualmente inteiros) que ela pode assumir pertencem a um conjunto enumerável E de números reais. Se um número real está em E, a probabilidade de que a variável assuma esse valor é estritamente positiva. Caso contrário, ela é nula''.
+	
+	\begin{displaycquote}[p. 98]{pinheiro2009}
+	Usualmente, os valores de uma variável aleatória discreta resultam de um processo de contagem.
+	
+	São exemplos de variáveis aleatórias discretas:
+	
+		\begin{itemize}
+			\item número de novas mensagens que estão à sua espera na fila de entrada a cada vez
+			que você abre a sua caixa de e-mails;
+			\item número de visitas ``bem-sucedidas'' (ou seja, que resultaram na concretização de
+			uma venda) em cada 20 visitas feitas por um vendedor.
+		\end{itemize}
+	\end{displaycquote}
+	
+	\begin{table}[]
+		\centering
+		\caption{Tabela distribuição de probabilidade de $F =$ face de um dado}
+		\label{tab:dpfacedado}
+		\begin{tabular}{l|l}
+			\textbf{$Fi$} & \textbf{$P(Fi)$} \\ \hline
+			$1$ & $\frac{1}{6}=16,7\%$ \\
+			$2$ & $16,7\%$ \\
+			$3$ & $16,7\%$ \\
+			$4$ & $16,7\%$ \\
+			$5$ & $16,7\%$ \\
+			$6$ & $16,7\%$
+		\end{tabular}
+	\end{table}
+
+	Condições de existência:
+	
+	\begin{enumerate}
+		\item Todas as probabilidades são positivas
+		\item Soma das probabilidades de todos os valores é $100\%$
+	\end{enumerate}
+	
+	\subsection{Lei dos grandes números}
+	
+	A probabilidade de um evento é igual a sua frequência relativa, se houver uma grande quantidade de ocorrências:
+	
+	$p(evento) \rightarrow f(evento), n \rightarrow \infty$
+	
+	\subsubsection{Exemplo}
+	
+	\begin{table}[]
+		\centering
+		\caption{Tabela de $X =$ vendas de uma loja de  ouro em $300$ dias}
+		\label{tab:couro}
+		\begin{tabular}{l|l}
+			\textbf{$X$} & \textbf{Quantidade de dias} \\ \hline
+			$0$ & $54$ \\
+			$1$ & $117$ \\
+			$2$ & $72$ \\
+			$3$ & $42$ \\
+			$4$ & $12$ \\
+			$5$ & $3$
+		\end{tabular}
+	\end{table}
+
+	A partir da \autoref{tab:couro}, temos a \autoref{tab:courodp}.
+	
+	\begin{table}[]
+		\centering
+		\caption{Distribuição de probabilidade de $X$}
+		\label{tab:courodp}
+		\begin{tabular}{l|l|l}
+			\textbf{$X_i$} & \textbf{$P(X_i)$} & \textbf{$P(X_i)X_i$} \\ \hline
+			$0$ & $18\%$ & $0$ \\
+			$1$ & $34\%$ & $0,39$ \\
+			$2$ & $24\%$ & $0,48$ \\
+			$3$ & $14\%$ & $0,42$ \\
+			$4$ & $4\%$ & $0,16$ \\
+			$5$ & $1\%$ & $0,05$ \\
+			& & (+) $1,5$
+		\end{tabular}
+	\end{table}
+
+	\subsection{Esperança, variância e desvio padrão de uma variável aleatória}
+	
+	
+	
 	% ----------------------------------------------------------
 	
 	
