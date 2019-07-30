@@ -146,7 +146,7 @@
 	
 	Munhoz agora parte para o exercício 8D no mesmo arquivo PDF. Professor inicia a construção de uma tabela de frequências absolutas. Em seguida, complementa com a coluna de frequências relativas. Vide \autoref{tab:tab1}.
 	
-	\begin{table}[]
+	\begin{table}[h]
 		\centering
 		\caption{Opinião dos funcionários sobre troca de gerente (G = gosta; N = não gosta)}
 		\begin{tabular}{|l|l|l|}
@@ -185,7 +185,7 @@
 	
 	Para permitir a construção do histograma, agrupa as pontuações em classes (vide \autoref{tab:pontuacaoalunos}).
 	
-	\begin{table}[]
+	\begin{table}[h]
 		\centering
 		\caption{Pontuação dos alunos}
 		\begin{tabular}{l|l|l|l}
@@ -218,7 +218,7 @@
 	
 	Vide gastos na \autoref{tab:gastomes}.
 	
-	\begin{table}[]
+	\begin{table}[h]
 		\centering
 		\caption{Gasto por mês}
 		\begin{tabular}{l|l}
@@ -227,7 +227,6 @@
 			Fevereiro & 500 \\
 			Março & 600
 		\end{tabular}
-		\\ \vspace{1mm} Fonte: sem fonte
 		\label{tab:gastomes}
 	\end{table}
 	
@@ -247,7 +246,7 @@
 	
 	Troca a faixa pelo ponto central (o ponto médio) e calcula a média. Veja o exemplo da \autoref{tab:agrup6e}
 	
-	\begin{table}[]
+	\begin{table}[h]
 		\centering
 		\caption{Pontuação dos alunos}
 		\begin{tabular}{l|l|l|l|l}
@@ -282,7 +281,7 @@
 	
 	Calculemos para os gastos dos exemplos anteriores (\autoref{tab:gastomesxi}).
 	
-	\begin{table}[]
+	\begin{table}[h]
 		\centering
 		\caption{Gasto por mês}
 		\begin{tabular}{l|l}
@@ -292,7 +291,6 @@
 			600 & 28900 \\ \hline
 			- & 86700
 		\end{tabular}
-		\\ \vspace{1mm} Fonte: sem fonte
 		\label{tab:gastomesxi}
 	\end{table}
 	
@@ -318,7 +316,7 @@
 	
 	Sendo $f =$ frequência relativa, temos a \autoref{tab:vdb}.
 	
-	\begin{table}[]
+	\begin{table}[h]
 		\centering
 		\caption{Tabela para exemplificar variância para dados brutos}
 		\begin{tabular}{l|l|l|l|l}
@@ -328,7 +326,6 @@
 			$X_{1}$ & $f_{1}$ & $f_{1}X_{1}$ & $(X_{1} - M)^{2}$ & $f_{1}(X_{1}-M)^{2}$ \\ \hline
 			- & - & $M$ & - & $\sigma{2}$
 		\end{tabular}
-		\\ \vspace{1mm} Fonte: N/A
 		\label{tab:vdb}
 	\end{table}
 	
@@ -804,7 +801,7 @@
 	
 	$m=5$ e $n=3$
 	
-	\begin{table}[]
+	\begin{table}[h]
 		\centering
 		\caption{Representação dos pares ordenados}
 		\label{tab:paresordenados}
@@ -905,7 +902,7 @@
 		\end{itemize}
 	\end{displaycquote}
 	
-	\begin{table}[]
+	\begin{table}[h]
 		\centering
 		\caption{Tabela distribuição de probabilidade de $F =$ face de um dado}
 		\label{tab:dpfacedado}
@@ -935,7 +932,7 @@
 	
 	\subsubsection{Exemplo}
 	
-	\begin{table}[]
+	\begin{table}[h]
 		\centering
 		\caption{Tabela de $X =$ vendas de uma loja de  ouro em $300$ dias}
 		\label{tab:couro}
@@ -970,7 +967,33 @@
 
 	\subsection{Esperança, variância e desvio padrão de uma variável aleatória}
 	
+	\begin{itemize}
+		\item Esperança de $X$: $E(X) = p(X_1)X_1 + p(X_2)X_2 + \dots + p(X_n)X_n$
+		\item Variância de $X$ (em relação à esperança $E(X)$: $Var(X) = E(X-E(X))^2$
+		\item Desvio padrão de $X$ (em relação à esperança $E(X)$): $DP(X) = \sqrt{Var(X)}$
+	\end{itemize}
+
+	\subsubsection{Exemplo}
 	
+	\notagrande{No caso em questão $DP(X) = \sqrt{1,25} = 1,1$}
+	
+	O exemplo se resume à \autoref{tab:courodpcompleta}.
+	
+	\begin{table}[h]
+	\centering
+	\caption{Distribuição de probabilidade de $X$}
+	\label{tab:courodpcompleta}
+	\begin{tabular}{l|l|l|l|l}
+		\textbf{$X_i$} & \textbf{$P(X_i)$} & \textbf{$P(X_i)X_i$} & \textbf{$P(X_i)$} & \textbf{$(X_i-E(X))^2$} \\ \hline
+		$0$ & $18\%$ & $0$ & $0,18$ & $(0-1,5)^2=0,405$ \\
+		$1$ & $34\%$ & $0,39$ & $0,39$ & $(1-1,5)^2=0,0975$ \\
+		$2$ & $24\%$ & $0,48$ & $0,24$ & $(2-1,5)^2=0,06$ \\
+		$3$ & $14\%$ & $0,42$ & $0,14$ & $(3-1,5)^2=0,315$ \\
+		$4$ & $4\%$ & $0,16$ & $0,04$ & $(4-1,5)^2=0,25$ \\
+		$5$ & $1\%$ & $0,05$ & $0,01$ & $(5-1,5)^2=0,1225$ \\
+		& & $E(X)=1,5$ & & $Var(X) = 1,25$
+	\end{tabular}
+	\end{table}
 	
 	% ----------------------------------------------------------
 	
