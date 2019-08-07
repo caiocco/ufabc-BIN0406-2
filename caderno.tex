@@ -30,6 +30,10 @@
 \usetikzlibrary{arrows,chains,fit,quotes,positioning,shapes}
 \pgfplotsset{compat=1.13}
 
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+
 \newcommand{\aula}[2][]{\todo[inline,color=blue!10, #1]{\textbf{#2}}}
 \newcommand{\nota}[2][]{\todo[color=yellow!30,linecolor=black, #1]{#2}}
 \newcommand{\revisar}[2][]{\todo[color=red!30,linecolor=black, #1]{#2}}
@@ -994,6 +998,317 @@
 		& & $E(X)=1,5$ & & $Var(X) = 1,25$
 	\end{tabular}
 	\end{table}
+
+	\aula{Início da aula de 02/08/2019}
+	
+	\section{Distribuições de probabilidade discretas binomiais}
+	
+	Ementa:
+	
+	\begin{itemize}
+		\item Distribuição binomial
+		\item Variáveis de experimentos com múltiplos ensaios
+		\item Experimento binomial
+		\item Distribuição de probabilidade binomial
+		\item Esperança, variância e desvio padrão da binomial
+	\end{itemize}
+
+	\subsection{Variáveis de experimentos com múltiplos ensaios}
+	
+	Considere um experimento: lançamento de um dado três vezes, sendo:
+	
+	\begin{itemize}
+		\item $S =$ Sucesso: se sair a face 1
+		\item $F =$ Fracasso: não sair a face 1
+	\end{itemize}
+	
+	Resultados possíveis: SSS, FSS, SFS etc.
+	
+	Considere agora outro experimento: retirada de três bolas de um saco com cinco bolas pretas e uma branca (sem reposição).
+	
+	\bolinha{P} \bolinha{P} \bolinha{P} \bolinha{P} \bolinha{P} \bolinha{B}
+	
+	\begin{itemize}
+		\item $S =$ sucesso: sair branca
+		\item $F =$ fracasso: sair preta
+	\end{itemize}
+	
+	Resultados possíveis: SFF, FSF etc.
+	
+	\subsection{Experimento binomial}
+	
+	Com base nos experimentos da seção anterior, vamos então definir \textbf{experimento binomial}. Para ser um experimento binomial há alguns requisitos, a saber:
+	
+	\begin{enumerate}
+		\item Dois resultados possíveis em cada ensaio: fracasso ($F$) e sucesso ($S$)
+		\item $n$ ensaios
+		\item $p(S)$ é constante
+	\end{enumerate}
+	
+	Escrevemos $p(S) = p$, logo, $p(F)=1-p$.
+	
+	O primeiro experimento é um experimento binomial, já o segundo exemplo, não.
+	
+	\subsubsection{Notação}
+	
+	Experimento binomial com $n$ ensaios e $p(s)=p$:
+	
+	\begin{equation*}
+		Bin(n,p)
+	\end{equation*}
+	
+	Variável de interesse é $X =$ quantidade de sucessos em $n$ ensaios com $p(S)=$, tal que $X$ é $Bin(n,p)$.
+	
+	\section{Distribuição de probabilidade binomial}
+	
+	Considere como exemplo o lançamento de um dado três vezes, sendo desejada a saída da face 1.
+	
+	Sabendo que $X =$ quantidade de sucesso, temos $X = 0, 1, 2, 3$.
+	
+	Vamos construir uma árvore:
+	
+
+	
+	Vamos construir a distribuição de frequências (\autoref{tab:pbinomial}).
+	
+	\begin{table}[h]
+	\centering
+	\caption{Tabela de distribuição de probabilidade de $X$}
+	\label{tab:pbinomial}
+	\begin{tabular}{l|l}
+		\textbf{$X$} & \textbf{$P(X)$} \\ \hline \\
+		$0$ & $(\frac{5}{6})^3 = 57,9\%$ \\ \\
+		$1$ & $3 \times (\frac{5}{6}) \times (\frac{1}{6}) = 34,7\%$ \\ \\
+		$2$ & $3 \times (\frac{5}{6}) \times (\frac{1}{6})^2 = 6,9\%$ \\ \\
+		$3$ & $(\frac{1}{6})^3 = 0,5\%$	\end{tabular}
+	\end{table}
+
+	\notagrande{Lembrando que a soma das probabilidades na distribuição precisa dar 100\%}
+	
+	A tabela nada mais é do que $X = Bin\left(3,\dfrac{1}{6}\right)$.
+
+	\subsubsection{Proposição}
+	
+	Seja $X=Bin(n,p)$ então $p(X=S)=C_{n,s} \cdot p^2 (1-p)^{n-s}$.
+	
+	\subsubsection{Exemplo}
+	
+	Um vendedor faz uma venda com 20\% de probabilidade de sucesso. Qual a probabilidade de fazer duas ou mais vendas em um dia que fez dez visitas?
+	
+	O experimento é realizar as $10$ visitas.
+	
+	$S =$ vender
+	
+	$F =$ não vender
+	
+	$X =$ quantidade de vendas em $10$ visitas
+	
+	$X = Bin(10,20\%)$
+	
+	Queremos:
+	
+	$p(X \geq 2) = ?$
+	
+	Temos: 
+	
+	$p(X=0) = C_{10,0} (20\%)^0 \cdot (80\%)^{10} = 1 \cdot (80\%)^{10} = 10,7\%$
+	
+	$p(X=1)=C_{10,1} (20\%)^1 \cdot (80\%)^9 = 26,8\%$
+	
+	Logo: 
+	
+	$p(X \geq 2) = 100\% - 10,7\% - 20,8\% = 62,5\%$.
+	
+	\subsection{Esperança, variância e desvio padrão}
+	
+	Proposição:
+	
+	Seja $X = Bin(n,p)$ então:
+	
+	$E(X) = np$
+	
+	$Var(X) = np(1\times p)$
+	
+	$DP(X) = \sqrt{np(1-p)}$
+	
+	\subsubsection{Exemplo}
+	
+	Vendedor.
+	
+	$p(S) = 20\%, 10$ visitas
+	
+	$X =$ quantidade de visitas
+	
+	Solução:
+	
+	$X = Bin(10,20\%)$
+	
+	$E(X) = 10 \times 20\% = 2$
+	
+	$Var(X) = 10 \times 20\% \times 80\% = 1,6$
+	
+	$DP(X) = \sqrt{1,6} = 1,3$
+	
+	\aula{Início da aula de 06/08/2019}
+	
+	\section{Distribuição normal}
+	
+	Ementa:
+	
+	\begin{itemize}
+		\item Distribuição contínua uniforme
+		\item Distribuição discreta $\times$ distribuição contínua
+		\item Distribuição normal padrão
+		\item Distribuição normal
+		\item Teorema do limite central
+	\end{itemize}
+
+	\subsection{Distribuição uniforme}
+	
+	Função $f(X) =$ função densidade de probabilidade.
+	
+	A probabilidade está associada à área, logo, $probabilidade\leftrightarrow area$. Temos:
+	
+	\begin{equation*}
+		p(r \leq X \leq r) = \dfrac{r - s}{b -a}
+	\end{equation*}
+	
+	\begin{equation*}
+		p(a \leq X \leq b) = 100\% = (b-a) \times \dfrac{1}{b-a}
+	\end{equation*} 
+	
+	A probabilidade de todos os casos definidos deve ser de $100\%$.
+	
+	\subsubsection{Exemplo}
+	
+	\noindent \textbf{Compra de apartamento:} corretor recomenda ofertar entre $250.000$ e $300.000$. Qual a probabilidade de o vendedor aceitar $280.000$?
+	
+	$P(250 \leq X \leq 280) = \dfrac{280 - 250}{300 - 250} = 60\%$
+	
+	\subsection{Discreta vs. contínua}
+	
+	\begin{table}[h]
+		\centering
+		\caption{Distribuição discreta $\times$ distribuição contínua}
+		\label{tab:pbinomial}
+		\begin{tabular}{l|l|l|l}
+			\textbf{$X$ contínua} & \textbf{$P$ discreta} & \textbf{$X$ contínua} & \textbf{$P$ contínua} \\ \hline
+			$X_1$ & $P_1$ & $X_1$ & $0$ \\
+			$X_2$ & $P_2$ & $X_2$ & $0$ \\
+			$X_3$ & $P_3$ & $X_3$ & $0$
+		\end{tabular}
+	\end{table}
+
+	\begin{itemize}
+		\item Discreta
+		\begin{itemize}
+			\item $P(X=X_i) \neq 0$
+			\item Descrição: tabela de distribuição de probabilidades (em valores e probabilidades)
+		\end{itemize}
+		\item Contínua
+		\begin{itemize}
+			\item $P(X=X_i) = 0$
+			\item Descrição: tabela de distribuição de intervalos e probabilidades
+		\end{itemize}
+	\end{itemize}
+	
+	\section{Distribuição normal padrão}
+	
+	Notação: distribuição normal padrão com média $o$ e variância $1$:
+	
+	\begin{equation*}
+		N(0,1)
+	\end{equation*}
+	
+	Proposição:
+	
+	\begin{equation*}
+	Z = N(0,1)
+	\end{equation*}
+	
+	\begin{enumerate}
+		\item $P(Z \leq Z_1) = P(Z \geq -Z_1)$
+		\item $P(Z \geq Z_1) = 100\% - P(Z \leq Z_1)$
+		\item $P(Z_1 \leq Z \leq Z_2) = P(Z \ leq Z_2) = P(Z \ leq Z_1)$
+	\end{enumerate}
+	
+	\subsection{Uso da tabela da normal padrão}
+	
+	\begin{equation*}
+		P(Z < z)
+	\end{equation*}
+	
+	\subsubsection{Exemplo}
+	
+	Usar tabela em \url{https://www.ime.unicamp.br/~hlachos/Tabela_Normal.pdf}.
+	
+	\begin{enumerate}[label=\alph*.]
+		\item $p(Z \leq 1,2)$ \\
+		$p(Z \leq 1,2) = p(Z \leq 1,20) = 88,49\%$
+		\item $p(Z \geq 2,33)$ \\ $p(Z \geq 2,33) = 100\% - p(Z \leq 2,33) = 100\% - 99,01\% = 0,99\%$
+		\item $p(1,2 \leq Z \leq 2,33)$ \\
+		$p(1,2 \leq Z \leq 2,33) = P(Z \leq 2,33) - P(Z \leq 1,2) = 99,01\% - 88,49\% - 10,52\%$
+		\item $p(-1 \leq Z \leq 1)$ \\
+		$p(-1 \leq Z \leq 1) = p(Z \leq 1) - p(Z \leq -1)$ \\
+		Temos: $p(Z \leq 1) = 84,13\%$ e $p(Z \leq -1) = 100-84,13\% = 15,87\%$ \\
+		$p(-1 \leq Z \leq -1) = 84,13\% - 15,87\% = 68,26\%$
+		\item $p(-1,96 \leq Z \leq 1,96)$ \\
+		$p(Z \leq 1,96) - p(Z \leq -1,96) = 97,50\% - (100\% - 97,50\%) = 95\%$
+	\end{enumerate}
+
+	À alínea (c) significa que a probabilidade de ocorrer um valor que esteja 1 desvio padrão da média é de $68,26\%$.
+	
+	\subsection{Distribuição normal}
+	
+	Proposição:
+	
+	Se $X = N(\mu, \sigma^2)$ = normal com média $\mu$ e variância $\sigma^2$, então:
+	
+	\begin{enumerate}
+		\item $Z = \dfrac{Z-\mu}{\sigma}$ é uma $N(0,1)$
+		\item $p(X \leq X_1) = p(Z \leq Z_1)$ para $Z_1 = \dfrac{X_1 - \mu}{\sigma}$
+	\end{enumerate}
+
+	\subsubsection{Exemplo}
+	
+	Um pneu roda em km $N\left(58000, (8000)^2\right)$.
+	
+	\begin{enumerate}[label=\alph*.]
+		\item $p(X \leq 50000)$ \\
+		$= p\left(Z \leq \dfrac{50000 - 58000}{8000}\right)$ \\
+		$= p(Z \leq -1) = 100\% - 84,13\% = 15,87\%$
+		\item $p(X \geq 70000)$ \\
+		$=100\% - p(X \leq 70000)$ \\
+		$=100\% - p\left( Z \leq \dfrac{70000 - 58000}{8000} \right)$ \\
+		$= 100\% - p(Z \leq 1,5) = 100\% - 93,22\% = 6,68\%$ \\ \\
+		$p(50000 \leq X \leq 70000) = p(X \leq 70000) - p(X \leq 50000)$ \\
+		$= 93,32\% - 15,87\% = 77,45\%$4
+		\item Garantia mínima a oferecer um custo de $2\%$ \\
+		$p(X \leq X_*) = 2\%$ \\
+		$p(X \leq X_*) = p(Z \leq Z_*)$ \\
+		\\
+		Vamos pegar o simétrico dele: \\
+		\\
+		$p(Z \leq -Z_*) = 98\%$ \\
+		\\
+		Temos: \\
+		\\
+		$-Z_* = 2,05$ logo $Z_* = -2,05$ \\
+		\\
+		Então: \\
+		\\
+		$Z_* = \dfrac{X_* - \mu}{\sigma}$ \\
+		$X_* = \mu + \sigma Z_* = 58000 - 2,05 \times 8000 = 91600$
+	\end{enumerate}
+	
+	\subsection{Teorema do limite central}
+	
+	Sejam $X_1$, $X_2$, $\dots$ distribuições com média $\mu$ e desvio padrão $\sigma$ e independentes:
+	
+	\begin{enumerate}
+		\item $X_1 + X_2 + \dots +X_n$ é $N(n\mu, n\sigma^2)$
+		\item $\dfrac{X_1 + X_2 + \dots + X_n}{n}$ é $N\left( \mu,\dfrac{\sigma^2}{n} \right)$
+	\end{enumerate}
 	
 	% ----------------------------------------------------------
 	
